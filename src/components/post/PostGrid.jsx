@@ -39,7 +39,6 @@ export default function PostGrid() {
   useEffect(() => {
     getPostList()
   }, [])
-
   //Get post list
   const getPostList = () => {
     axios.get(`${API_URL}/post`, {
@@ -51,7 +50,6 @@ export default function PostGrid() {
       console.error(error)
     })
   }
-
   //Delete user data
   const deleteUser = () => {
     axios.delete(`${API_URL}/post/${selectedPostId}`, {
@@ -65,12 +63,10 @@ export default function PostGrid() {
       console.error(error)
     })
   }
-
   const handleClickOpen = (Id) => {
     setOpen(true);
     setSelectedPostId(Id)
   };
-
   const handleCommentOpen = (postId) => {
     axios.get(`${API_URL}/post/${postId}/comment`, {
       headers: apiHeader
@@ -83,13 +79,10 @@ export default function PostGrid() {
     })
 
   };
-
   const handleClose = () => {
     setOpen(false);
     setOpenComment(false)
   };
-
-
   return (
     <>
       <Grid>
@@ -98,10 +91,7 @@ export default function PostGrid() {
             <Card key={item.id}>
               <CardHeader
                 avatar={<Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">R</Avatar>}
-                action={<IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
-                }
+                action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
                 title={`${item.owner.firstName} ${item.owner.lastName}`}
                 subheader={moment(item.publishDate).format('DD  MMMM, YYYY')} />
               <CardMedia
@@ -140,7 +130,7 @@ export default function PostGrid() {
           </Box>}
         </Grid>
       </Grid>
-      <DeleteDialog open={open} confirmDialog={deleteUser} closeDialog={handleClose} title="Are you sure you want to delete this post?"/>
+      <DeleteDialog open={open} confirmDialog={deleteUser} closeDialog={handleClose} title="Are you sure you want to delete this post?" />
       <CommentDialog openComment={openComment} closeDialog={handleClose} commentList={commentList} />
     </>
   );

@@ -16,12 +16,10 @@ function DataAnalysis() {
       console.error(error)
     })
   }, [])
-
   const xData = [];
   post.forEach((item) => {
     xData.push(item.text)
   })
-
   const yData = [];
   post.forEach((item) => {
     yData.push(item.likes)

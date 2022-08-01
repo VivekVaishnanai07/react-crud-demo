@@ -43,9 +43,6 @@ class User extends Component {
   componentDidMount() {
     this.getUserList()
   }
-
-
-
   handleClose = () => {
     this.setState({
       ...this.state,
@@ -53,7 +50,6 @@ class User extends Component {
       openComment: false
     });
   };
-
   //Get user list 
   getUserList = () => {
     axios.get(`${API_URL}/user`, {
@@ -65,7 +61,6 @@ class User extends Component {
       console.error(error)
     })
   }
-
   //Get post list
   getPostList = (postId) => {
     axios.get(`${API_URL}/user/${postId}/post`, {
@@ -81,7 +76,6 @@ class User extends Component {
       console.error(error)
     })
   }
-
   //Delete User data 
   deleteUser() {
     axios.delete(`${API_URL}/user/${this.state.userId}`, {
@@ -95,7 +89,6 @@ class User extends Component {
       console.error(error)
     })
   }
-
   render() {
     const handleClickOpen = (Id) => {
       this.setState({
@@ -104,7 +97,6 @@ class User extends Component {
         userId: Id
       });
     };
-
     const { userList } = this.state
     return (
       <>
@@ -126,12 +118,8 @@ class User extends Component {
                 userList.length > 0 &&
                 <TableBody>
                   {userList.map((item, index) => (
-                    <TableRow
-                      key={item.id}
-                    >
-                      <TableCell component="th" scope="row">
-                        {(index + 1)}
-                      </TableCell>
+                    <TableRow key={item.id}>
+                      <TableCell component="th" scope="row">{(index + 1)}</TableCell>
                       <TableCell><img className="img-content" src="https://picsum.photos/id/237/200/300" alt="img" /></TableCell>
                       <TableCell>{item.firstName}</TableCell>
                       <TableCell>{item.lastName}</TableCell>
@@ -148,8 +136,8 @@ class User extends Component {
             </Box>}
           </TableContainer>
         </Container>
-        <DeleteDialog open={this.state.open} closeDialog={() => this.handleClose()} confirmDialog={() => this.deleteUser()} 
-        title="Are you sure you want to delete this user?"/>
+        <DeleteDialog open={this.state.open} closeDialog={() => this.handleClose()} confirmDialog={() => this.deleteUser()}
+          title="Are you sure you want to delete this user?" />
         <Dialog open={this.state.openComment} keepMounted onClose={() => this.handleClose()}>
           <DialogTitle>Post Comments</DialogTitle>
           {

@@ -1,15 +1,12 @@
 export const isLogin = () => {
-    if (localStorage.getItem("isLogin")) {
-        return true;
-    }
-
-    return false;
+  if (localStorage.getItem("isLogin")) {
+    return true;
+  }
+  return false;
 }
-
 export const logout = () => {
-    localStorage.removeItem("isLogin");
+  localStorage.removeItem("isLogin");
 }
-
 export const login = () => {
-    localStorage.setItem("isLogin", "true");
+  localStorage.setItem("isLogin", "true");
 }

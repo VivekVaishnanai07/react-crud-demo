@@ -41,8 +41,6 @@ class UserOperation extends Component {
           })
     })
   }
-
-
   render() {
     const theme = createTheme()
     const { firstName, lastName, email, userId, isEmailDisable } = this.state
@@ -51,7 +49,6 @@ class UserOperation extends Component {
       'lastName': this.state.lastName,
       'email': this.state.email,
     }
-
     //put and post(create) api
     const SubmitHandler = (event) => {
       event.preventDefault();
@@ -81,7 +78,6 @@ class UserOperation extends Component {
             toast.error(error.response.data.data.email, notificationConfig)
           })
     }
-
     //onChange api call
     const handleChangeForTextField = (event) => {
       let name = event.target.name
@@ -94,15 +90,7 @@ class UserOperation extends Component {
     return (
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
-          <Box
-            className="add-data-box"
-            sx={{
-              marginTop: 11,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
+          <Box className="add-data-box" sx={{ marginTop: 11, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Typography component="h1" variant="h5">{userId ? "Update User" : "Add User"} </Typography>
             <form onSubmit={SubmitHandler}>
               <TextField

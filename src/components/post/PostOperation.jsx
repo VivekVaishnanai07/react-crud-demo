@@ -57,7 +57,6 @@ function PostOperation(props) {
         console.error(error)
       })
   }, [])
-
   // For get user by id
   useEffect(() => {
     let findTagAry = []
@@ -83,7 +82,6 @@ function PostOperation(props) {
         })
     }
   }, [params.postUserId, userList])
-
   //put and post(create) api 
   const handlerSubmit = (event) => {
     event.preventDefault();
@@ -127,22 +125,13 @@ function PostOperation(props) {
         })
     }
   }
-
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <Box
-          className="add-data-box"
-          sx={{
-            marginTop: 11,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
+          className="add-data-box" sx={{ marginTop: 11, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Typography component="h1" variant="h5">{userId ? "Update Post User" : "Add Post User"}</Typography>
           <form onSubmit={handlerSubmit}>
-
             <TextField
               margin="normal"
               required
@@ -189,7 +178,6 @@ function PostOperation(props) {
                 )}
               />
             </Stack>
-
             <FormControl className="user-post-inputbox" fullWidth>
               <InputLabel id="demo-simple-select-label">Owner Name</InputLabel>
               <Select
@@ -198,8 +186,7 @@ function PostOperation(props) {
                 id="demo-simple-select"
                 value={owner}
                 label="Owner"
-                onChange={(e) => setOwner(e.target.value)}
-              >
+                onChange={(e) => setOwner(e.target.value)}>
                 {userList.map((name) => (
                   <MenuItem
                     key={name.id}

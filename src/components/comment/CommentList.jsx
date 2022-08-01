@@ -9,7 +9,6 @@ import { apiHeader, API_URL, notificationConfig } from "../../util/constant";
 import DeleteDialog from "../../util/DeleteDialog";
 
 function CommentList() {
-
   const [userId, setUserId] = useState("")
   const [open, setOpen] = useState(false);
   const [postList, setPostList] = useState("");
@@ -20,7 +19,6 @@ function CommentList() {
     getCommentList()
     getPostList()
   }, [])
-
   const getCommentList = () => {
     axios.get(`${API_URL}/comment`, {
       headers: apiHeader
@@ -31,7 +29,6 @@ function CommentList() {
       console.error(error)
     })
   }
-
   const getPostList = () => {
     axios.get(`${API_URL}/post`, {
       headers: apiHeader
@@ -44,7 +41,6 @@ function CommentList() {
         console.error(error)
       })
   }
-
   // Delete model handlers
   const deleteUser = () => {
     axios.delete(`${API_URL}/comment/${userId}`, {
@@ -58,22 +54,18 @@ function CommentList() {
       console.error(error)
     })
   }
-
   const handleOpen = (Id) => {
     setOpen(true);
     setUserId(Id)
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   // To get post name from post list
   const getPostName = (postId) => {
     let post = postList.find(element => element.id === postId)
     return post.text
   }
-
   return (
     <>
       <Container className="table-content">

@@ -12,27 +12,23 @@ class Header extends Component {
     this.state = { menuitem: false }
   }
   render() {
-
     //menu Icon open
     const handleOpenNavMenu = () => {
       this.setState({
         menuitem: true
       })
     }
-
     //menu Icon close
     const handleCloseNavMenu = () => {
       this.setState({
         menuitem: false
       })
     }
-
     //logout event
     const handlerLogout = () => {
       logout();
       this.props.history.push("/")
     }
-
     return (
       <AppBar position="fixed">
         <Container maxWidth="x2">
@@ -42,45 +38,26 @@ class Header extends Component {
                 color="inherit">
                 <MenuIcon />
               </IconButton>
-              <Menu
-                id="basic-menu"
-                open={this.state.menuitem}
-                className="custom-menuitem"
-                onClose={handleCloseNavMenu}
-                MenuListProps={{
-                  'aria-labelledby': 'basic-button',
-                }}
-              >
+              <Menu id="basic-menu" open={this.state.menuitem} className="custom-menuitem" onClose={handleCloseNavMenu}
+                MenuListProps={{ 'aria-labelledby': 'basic-button' }}>
                 <MenuItem onClose={handleCloseNavMenu}><Link to="/user-list">User</Link></MenuItem>
                 <MenuItem onClose={handleCloseNavMenu}><Link to="/post-list">Post</Link></MenuItem>
                 <MenuItem onClose={handleCloseNavMenu}><Link to="/comment-list">Comment</Link></MenuItem>
-                <MenuItem onClose={handleCloseNavMenu}><Link to="/data-analysis">Analysis-Chart</Link></MenuItem>
+                <MenuItem onClose={handleCloseNavMenu}><Link to="/data-analysis">Data-Analysis</Link></MenuItem>
               </Menu>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
+              <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
                 <Link className="web-nav-button" to="/user-list">User</Link>
               </Button>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
+              <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
                 <Link className="web-nav-button" to="/post-list">Post</Link>
               </Button>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
+              <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
                 <Link className="web-nav-button" to="/comment-list">Comment</Link>
               </Button>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                <Link className="web-nav-button" to="/data-analysis">Analysis-Chart</Link>
+              <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                <Link className="web-nav-button" to="/data-analysis">Data-Analysis</Link>
               </Button>
             </Box>
             <LogoutIcon onClick={handlerLogout} />

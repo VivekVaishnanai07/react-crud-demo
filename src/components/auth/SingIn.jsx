@@ -9,7 +9,6 @@ import { toast } from 'react-toastify';
 import { notificationConfig } from '../../util/constant';
 import { login } from '../privaterouter/utils/FunctionCalls';
 
-
 class SignIn extends React.Component {
   constructor() {
     super();
@@ -20,7 +19,6 @@ class SignIn extends React.Component {
     }
   }
   render() {
-
     const theme = createTheme()
     //call OnChange event
     const handleChangeForTextField = (e) => {
@@ -31,7 +29,6 @@ class SignIn extends React.Component {
         [name]: value
       })
     }
-
     //Submit data
     const onSingIn = (e) => {
       e.preventDefault();
@@ -43,20 +40,11 @@ class SignIn extends React.Component {
         toast.error("Invalid username or password", notificationConfig)
         login();
       }
-
     }
-
     return (
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
-          <Box
-            sx={{
-              marginTop: 11,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
+          <Box sx={{ marginTop: 11, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Typography component="h1" variant="h5"> Sign in </Typography>
             <form onSubmit={(e) => onSingIn(e)}>
               <TextField

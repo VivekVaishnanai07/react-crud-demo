@@ -13,7 +13,6 @@ import CommentDialog from "../../util/CommentDialog";
 import { apiHeader, API_URL, notificationConfig } from "../../util/constant";
 import DeleteDialog from "../../util/DeleteDialog";
 
-
 function PostList() {
   const [posts, setPost] = useState([])
   const [selectedPostId, setSelectedPostId] = useState("")
@@ -25,7 +24,6 @@ function PostList() {
   useEffect(() => {
     getPostList()
   }, [])
-
   //Get post list
   const getPostList = () => {
     axios.get(`${API_URL}/post`, {
@@ -37,7 +35,6 @@ function PostList() {
       console.error(error)
     })
   }
-
   //Delete user data
   const deleteUser = () => {
     axios.delete(`${API_URL}/post/${selectedPostId}`, {
@@ -51,12 +48,10 @@ function PostList() {
       console.error(error)
     })
   }
-
   const handleClickOpen = (Id) => {
     setOpen(true);
     setSelectedPostId(Id)
   };
-
   const handleCommentOpen = (postId) => {
     axios.get(`${API_URL}/post/${postId}/comment`, {
       headers: apiHeader
@@ -69,16 +64,14 @@ function PostList() {
     })
 
   };
-
   const handleClose = () => {
     setOpen(false);
     setOpenComment(false)
   };
-
   return (
     <>
       <Container className="table-content">
-        <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post User</Link></Button>
+        <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post</Link></Button>
         <Button className="add-btns" id="grid-btn" variant="contained"><Link className="web-nav-button" to="/post-grid">Grid View</Link></Button>
         <TableContainer className="table-container" component={Paper}>
           <Table aria-label="simple table">
