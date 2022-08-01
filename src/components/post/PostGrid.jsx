@@ -130,7 +130,7 @@ export default function PostGrid() {
               </CardContent>
               <CardActions disableSpacing className='postIcons'>
                 <ForumIcon onClick={() => handleCommentOpen(item.id)} />
-                <Link className="updateGridbtn" to={`/AddandUpdatePostUser/${item.id}`}><EditIcon /></Link>
+                <Link className="updateGridbtn" to={`/edit-post/${item.id}`}><EditIcon /></Link>
                 <DeleteForeverIcon onClick={() => handleClickOpen(item.id)} />
               </CardActions>
             </Card>

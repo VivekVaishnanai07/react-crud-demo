@@ -78,8 +78,8 @@ function PostList() {
   return (
     <>
       <Container className="table-content">
-        <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/AddandUpdatePostUser">Add Post User</Link></Button>
-        <Button className="add-btns" id="grid-btn" variant="contained"><Link className="web-nav-button" to="/postuserlist/GridView">Grid View</Link></Button>
+        <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post User</Link></Button>
+        <Button className="add-btns" id="grid-btn" variant="contained"><Link className="web-nav-button" to="/post-grid">Grid View</Link></Button>
         <TableContainer className="table-container" component={Paper}>
           <Table aria-label="simple table">
             <TableHead>
@@ -112,7 +112,7 @@ function PostList() {
                     <TableCell>{moment(post.updatedDate).format('DD  MMMM, YYYY')}</TableCell>
                     <TableCell><ForumIcon className="comment-btn" onClick={() => handleCommentOpen(post.id)} /></TableCell>
                     <TableCell><DeleteForeverIcon className="delete-btn" onClick={() => handleClickOpen(post.id)} /></TableCell>
-                    <TableCell><Link className="update-btn" to={`/AddandUpdatePostUser/${post.id}`}><EditIcon /></Link></TableCell>
+                    <TableCell><Link className="update-btn" to={`/edit-post/${post.id}`}><EditIcon /></Link></TableCell>
                   </TableRow>
                 ))}
               </TableBody>

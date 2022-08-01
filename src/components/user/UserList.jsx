@@ -136,7 +136,7 @@ class User extends Component {
                       <TableCell>{item.firstName}</TableCell>
                       <TableCell>{item.lastName}</TableCell>
                       <TableCell><ForumIcon className="comment-btn" onClick={() => this.getPostList(item.id)} /></TableCell>
-                      <TableCell><Link className="delete-btn" to={"/user"} refresh="true"><DeleteForeverIcon onClick={() => handleClickOpen(item.id)} /></Link></TableCell>
+                      <TableCell><Link className="delete-btn" to={"/user-list"} refresh="true"><DeleteForeverIcon onClick={() => handleClickOpen(item.id)} /></Link></TableCell>
                       <TableCell><Link className="update-btn" to={`/edit-user/${item.id}`}><EditIcon /></Link></TableCell>
                     </TableRow>
                   ))}

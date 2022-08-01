@@ -69,7 +69,7 @@
 
 .footer {
   bottom: 0%;
-  position: inherit !important;
+  position: fixed !important;
 }
 
 .footer-text {
@@ -104,6 +104,6 @@
   margin-left: 8px;
 }
 
-.updateGridbtn{
+.updateGridbtn {
   color: black;
 }

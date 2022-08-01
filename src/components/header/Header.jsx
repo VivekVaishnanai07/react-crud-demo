@@ -38,8 +38,8 @@ class Header extends Component {
         <Container maxWidth="x2">
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} >
-              <IconButton  size="large"  aria-label="account of current user" aria-controls="menu-appbar" onClick={handleOpenNavMenu}
-                 color="inherit">
+              <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" onClick={handleOpenNavMenu}
+                color="inherit">
                 <MenuIcon />
               </IconButton>
               <Menu
@@ -52,9 +52,9 @@ class Header extends Component {
                 }}
               >
                 <MenuItem onClose={handleCloseNavMenu}><Link to="/user-list">User</Link></MenuItem>
-                <MenuItem onClose={handleCloseNavMenu}><Link to="/postuserlist">Post</Link></MenuItem>
-                <MenuItem onClose={handleCloseNavMenu}><Link to="/commentUserList">Comment</Link></MenuItem>
-                <MenuItem onClose={handleCloseNavMenu}><Link to="/ChartAnalysis">Analysis-Chart</Link></MenuItem>
+                <MenuItem onClose={handleCloseNavMenu}><Link to="/post-list">Post</Link></MenuItem>
+                <MenuItem onClose={handleCloseNavMenu}><Link to="/comment-list">Comment</Link></MenuItem>
+                <MenuItem onClose={handleCloseNavMenu}><Link to="/data-analysis">Analysis-Chart</Link></MenuItem>
               </Menu>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -68,19 +68,19 @@ class Header extends Component {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link className="web-nav-button" to="/postuserlist">Post</Link>
+                <Link className="web-nav-button" to="/post-list">Post</Link>
               </Button>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link className="web-nav-button" to="/commentUserList">Comment</Link>
+                <Link className="web-nav-button" to="/comment-list">Comment</Link>
               </Button>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link className="web-nav-button" to="/ChartAnalysis">Analysis-Chart</Link>
+                <Link className="web-nav-button" to="/data-analysis">Analysis-Chart</Link>
               </Button>
             </Box>
             <LogoutIcon onClick={handlerLogout} />

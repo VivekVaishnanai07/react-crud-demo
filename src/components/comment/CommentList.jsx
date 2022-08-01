@@ -77,7 +77,7 @@ function CommentList() {
   return (
     <>
       <Container className="table-content">
-        <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/commentAddUser">Add Comment</Link></Button>
+        <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/add-comment">Add Comment</Link></Button>
         <TableContainer className="table-container" component={Paper}>
           <Table aria-label="simple table">
             <TableHead>
