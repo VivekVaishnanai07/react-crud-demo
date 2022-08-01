@@ -8,7 +8,7 @@ import Header from './components/header/Header';
 import PostUserList from './components/post/UserPost';
 import AddandUpdatePostUser from './components/post/UserPostOperation';
 import PrivateRoute from "./components/privaterouter/PrivateRoute";
-import User from "./components/user/User";
+import UserList from "./components/user/UserList";
 import UserOperation from './components/user/UserOperation';
 import ChartAnalysis from './components/analysis/ChartAnalysis';
 import CommentUserList from './components/comment/CommentUserList';
@@ -24,9 +24,9 @@ function App() {
         <Route path='/' component={SingIn} exact />
         <React.Fragment>
           <Header />
-          <PrivateRoute path='/user' component={User} exact />
-          <PrivateRoute path='/adduser' component={UserOperation} exact />
-          <PrivateRoute path='/update/:userId' component={UserOperation} exact />
+          <PrivateRoute path='/user-list' component={UserList} exact />
+          <PrivateRoute path='/add-user' component={UserOperation} exact />
+          <PrivateRoute path='/edit-user/:userId' component={UserOperation} exact />
           <PrivateRoute path='/postuserlist' component={PostUserList} exact />
           <PrivateRoute path='/postuserlist/GridView' component={GridView} exact />
           <PrivateRoute path='/AddandUpdatePostUser' component={AddandUpdatePostUser} exact />

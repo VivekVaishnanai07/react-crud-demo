@@ -63,7 +63,7 @@ function CommentUserList() {
     setOpen(true);
     setUserId(Id)
   };
-  
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -71,9 +71,7 @@ function CommentUserList() {
   // To get post name from post list
   const getPostName = (postId) => {
     let post = postList.find(element => element.id === postId)
-    if (post) {
-      return post.text
-    }
+    return post.text
   }
 
   return (
@@ -110,7 +108,7 @@ function CommentUserList() {
           {commentList.length === 0 && <Box className="progressbar"><CircularProgress /></Box>}
         </TableContainer>
       </Container>
-      <DeleteDialog open={open} deleteUserList={deleteUser} closeDialog={handleClose} />
+      <DeleteDialog open={open} confirmDialog={deleteUser} closeDialog={handleClose} title="Are you sure you want to delete this comment?" />
     </>
   )
 }

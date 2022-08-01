@@ -140,7 +140,7 @@ export default function GridView() {
           </Box>}
         </Grid>
       </Grid>
-      <DeleteDialog open={open} deleteUserList={deleteUser} closeDialog={handleClose} />
+      <DeleteDialog open={open} confirmDialog={deleteUser} closeDialog={handleClose} title="Are you sure you want to delete this post?"/>
       <CommentDialog openComment={openComment} closeDialog={handleClose} commentList={commentList} />
     </>
   );

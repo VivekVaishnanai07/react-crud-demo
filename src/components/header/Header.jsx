@@ -51,7 +51,7 @@ class Header extends Component {
                   'aria-labelledby': 'basic-button',
                 }}
               >
-                <MenuItem onClose={handleCloseNavMenu}><Link to="/user">User</Link></MenuItem>
+                <MenuItem onClose={handleCloseNavMenu}><Link to="/user-list">User</Link></MenuItem>
                 <MenuItem onClose={handleCloseNavMenu}><Link to="/postuserlist">Post</Link></MenuItem>
                 <MenuItem onClose={handleCloseNavMenu}><Link to="/commentUserList">Comment</Link></MenuItem>
                 <MenuItem onClose={handleCloseNavMenu}><Link to="/ChartAnalysis">Analysis-Chart</Link></MenuItem>
@@ -62,7 +62,7 @@ class Header extends Component {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link className="web-nav-button" to="/user">User</Link>
+                <Link className="web-nav-button" to="/user-list">User</Link>
               </Button>
               <Button
                 onClick={handleCloseNavMenu}

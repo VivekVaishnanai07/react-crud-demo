@@ -109,7 +109,7 @@ class User extends Component {
     return (
       <>
         <Container className="table-content">
-          <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/adduser">Add User</Link></Button>
+          <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/add-user">Add User</Link></Button>
           <TableContainer className="table-container" component={Paper}>
             <Table aria-label="simple table">
               <TableHead>
@@ -137,7 +137,7 @@ class User extends Component {
                       <TableCell>{item.lastName}</TableCell>
                       <TableCell><ForumIcon className="comment-btn" onClick={() => this.getPostList(item.id)} /></TableCell>
                       <TableCell><Link className="delete-btn" to={"/user"} refresh="true"><DeleteForeverIcon onClick={() => handleClickOpen(item.id)} /></Link></TableCell>
-                      <TableCell><Link className="update-btn" to={`/update/${item.id}`}><EditIcon /></Link></TableCell>
+                      <TableCell><Link className="update-btn" to={`/edit-user/${item.id}`}><EditIcon /></Link></TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -148,7 +148,8 @@ class User extends Component {
             </Box>}
           </TableContainer>
         </Container>
-        <DeleteDialog open={this.state.open} closeDialog={() => this.handleClose()} deleteUserList={() => this.deleteUser()} />
+        <DeleteDialog open={this.state.open} closeDialog={() => this.handleClose()} confirmDialog={() => this.deleteUser()} 
+        title="Are you sure you want to delete this user?"/>
         <Dialog open={this.state.openComment} keepMounted onClose={() => this.handleClose()}>
           <DialogTitle>Post Comments</DialogTitle>
           {
