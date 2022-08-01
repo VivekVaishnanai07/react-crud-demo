@@ -28,7 +28,7 @@ import DeleteDialog from '../../util/DeleteDialog';
 
 
 
-export default function GridView() {
+export default function PostGrid() {
   const [open, setOpen] = useState(false);
   const [postList, setPostList] = React.useState([])
   const [selectedPostId, setSelectedPostId] = useState("")

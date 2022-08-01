@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { apiHeader, API_URL, notificationConfig } from "../../util/constant";
 
 
-function CommentAddUser(props) {
+function AddComment(props) {
   const theme = createTheme()
   const [message, setMessage] = useState("")
   const [owner, setOwner] = useState("")
@@ -140,4 +140,4 @@ function CommentAddUser(props) {
   )
 }
 
-export default CommentAddUser;
+export default AddComment;

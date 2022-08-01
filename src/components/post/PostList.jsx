@@ -14,7 +14,7 @@ import { apiHeader, API_URL, notificationConfig } from "../../util/constant";
 import DeleteDialog from "../../util/DeleteDialog";
 
 
-function PostUserList() {
+function PostList() {
   const [posts, setPost] = useState([])
   const [selectedPostId, setSelectedPostId] = useState("")
   const [open, setOpen] = useState(false);
@@ -129,4 +129,4 @@ function PostUserList() {
   )
 }
 
-export default withRouter(PostUserList)
+export default withRouter(PostList)

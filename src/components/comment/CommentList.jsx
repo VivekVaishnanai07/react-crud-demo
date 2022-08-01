@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { apiHeader, API_URL, notificationConfig } from "../../util/constant";
 import DeleteDialog from "../../util/DeleteDialog";
 
-function CommentUserList() {
+function CommentList() {
 
   const [userId, setUserId] = useState("")
   const [open, setOpen] = useState(false);
@@ -113,4 +113,4 @@ function CommentUserList() {
   )
 }
 
-export default CommentUserList;
+export default CommentList;

@@ -34,7 +34,7 @@ const stag = [
   }
 ]
 
-function AddandUpdatePostUser(props) {
+function PostOperation(props) {
   const [text, setText] = useState('')
   const [likes, setLikes] = useState('')
   const [tags, setTags] = useState([])
@@ -222,4 +222,4 @@ function AddandUpdatePostUser(props) {
   )
 }
 
-export default withRouter(AddandUpdatePostUser)
+export default withRouter(PostOperation)
