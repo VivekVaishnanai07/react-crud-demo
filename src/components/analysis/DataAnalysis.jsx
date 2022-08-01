@@ -3,7 +3,7 @@ import ReactEcharts from "echarts-for-react";
 import React, { useEffect, useState } from "react";
 import { apiHeader, API_URL } from "../../util/constant";
 
-function ChartAnalysis() {
+function DataAnalysis() {
   const [post, setPost] = useState([])
 
   //get Userlist Call Api
@@ -44,4 +44,4 @@ function ChartAnalysis() {
   };
   return <ReactEcharts className="chartView" option={option} />;
 }
-export default ChartAnalysis;
+export default DataAnalysis;
