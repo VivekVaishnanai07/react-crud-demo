@@ -54,7 +54,7 @@ function AddComment(props) {
       })
       .then(response => {
         toast.success("Your data has been successfully Added", notificationConfig)
-        props.history.push("/commentUserlist")
+        props.history.push("/comment-list")
       })
       .catch(error => {
         toast.error(error.response.data.data.email, notificationConfig)

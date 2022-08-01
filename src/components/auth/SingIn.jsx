@@ -35,7 +35,7 @@ class SignIn extends React.Component {
       if (this.state.username === "aaa" && this.state.password === "aaa" && this.state.pin === "aaa") {
         toast.success("Sign in successfully.", notificationConfig)
         localStorage.setItem("isLogin", 'true')
-        this.props.history.push("/user");
+        this.props.history.push("/user-list");
       } else {
         toast.error("Invalid username or password", notificationConfig)
         login();

@@ -89,8 +89,10 @@ export default function PostGrid() {
         <Grid className='gridpost'>
           {postList.map((item) => (
             <Card key={item.id}>
-              <CardHeader
-                avatar={<Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">{item.owner.firstName.charAt(0).toUpperCase()}{item.owner.lastName.charAt(0).toUpperCase()}</Avatar>}
+              <CardHeader avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  {item.owner.firstName.charAt(0).toUpperCase()}{item.owner.lastName.charAt(0).toUpperCase()}
+                </Avatar>}
                 action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
                 title={`${item.owner.firstName} ${item.owner.lastName}`}
                 subheader={moment(item.publishDate).format('DD  MMMM, YYYY')} />

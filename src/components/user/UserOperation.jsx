@@ -60,7 +60,7 @@ class UserOperation extends Component {
           })
           .then(response => console.error(response),
             toast.success("Your data has been successfully updated", notificationConfig),
-            this.props.history.push("/user"))
+            this.props.history.push("/user-list"))
           .catch(error => {
             toast.error(error.response.data.data.email)
           }) :
@@ -72,7 +72,7 @@ class UserOperation extends Component {
           })
           .then(response => {
             toast.success("Your data has been successfully Added", notificationConfig)
-            this.props.history.push("/user")
+            this.props.history.push("/user-list")
           })
           .catch(error => {
             toast.error(error.response.data.data.email, notificationConfig)

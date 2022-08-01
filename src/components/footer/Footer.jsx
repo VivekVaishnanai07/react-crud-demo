@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <AppBar position="inherit" className="footer">
+    <AppBar position="static" className="footer">
       <Toolbar className="footer-text">Copyright © 2021 Othman. All Rights Reserved.</Toolbar>
     </AppBar>
   );

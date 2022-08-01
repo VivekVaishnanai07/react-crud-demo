@@ -60,9 +60,9 @@ function PostOperation(props) {
   // For get user by id
   useEffect(() => {
     let findTagAry = []
-    if (params.postUserId && userList.length > 0) {
-      setUserId(params.postUserId)
-      axios.get(`${API_URL}/post/${params.postUserId}`, {
+    if (params.postId && userList.length > 0) {
+      setUserId(params.postId)
+      axios.get(`${API_URL}/post/${params.postId}`, {
         headers: apiHeader
       })
         .then(response => {
@@ -81,7 +81,7 @@ function PostOperation(props) {
           console.error(error)
         })
     }
-  }, [params.postUserId, userList])
+  }, [params.postId, userList])
   //put and post(create) api 
   const handlerSubmit = (event) => {
     event.preventDefault();
@@ -90,15 +90,12 @@ function PostOperation(props) {
     tags.forEach((item) => {
       selectedValue.push(item.key)
     })
-
-
     let data = {
       'text': text,
       'likes': likes,
       'tags': selectedValue,
       'owner': owner,
     }
-
     if (userId) {
       axios.put(`${API_URL}/post/${userId}`, data,
         {
@@ -106,7 +103,7 @@ function PostOperation(props) {
         })
         .then(response =>
           toast.success("Your data has been successfully updated", notificationConfig),
-          props.history.push("/postuserlist"))
+          props.history.push("/post-list"))
         .catch(error => {
           console.error(error)
           toast.error(error.response.data.data.email, notificationConfig)
@@ -118,7 +115,7 @@ function PostOperation(props) {
         })
         .then(response => {
           toast.success("Your data has been successfully Added", notificationConfig)
-          props.history.push("/postuserlist")
+          props.history.push("/post-list")
         })
         .catch(error => {
           toast.error(error.response.data.data.email, notificationConfig)
@@ -130,7 +127,7 @@ function PostOperation(props) {
       <Container component="main" maxWidth="xs">
         <Box
           className="add-data-box" sx={{ marginTop: 11, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Typography component="h1" variant="h5">{userId ? "Update Post User" : "Add Post User"}</Typography>
+          <Typography component="h1" variant="h5">{userId ? "Update Post" : "Add Post"}</Typography>
           <form onSubmit={handlerSubmit}>
             <TextField
               margin="normal"
@@ -161,22 +158,9 @@ function PostOperation(props) {
                 id="tags-outlined"
                 options={stag}
                 getOptionLabel={(option) => option.key}
-                renderOption={(props, option) => (
-                  <Box component="li"{...props}>
-                    {option.value}
-                  </Box>
-                )}
-                onChange={(event, value) => (
-                  setTags(value)
-                )}
-                renderInput={(value) => (
-                  <TextField
-                    {...value}
-                    label="Tags"
-                    placeholder="Tags"
-                  />
-                )}
-              />
+                renderOption={(props, option) => (<Box component="li"{...props}>{option.value}</Box>)}
+                onChange={(event, value) => (setTags(value))}
+                renderInput={(value) => (<TextField {...value} label="Tags" placeholder="Tags" />)} />
             </Stack>
             <FormControl className="user-post-inputbox" fullWidth>
               <InputLabel id="demo-simple-select-label">Owner Name</InputLabel>
@@ -188,9 +172,7 @@ function PostOperation(props) {
                 label="Owner"
                 onChange={(e) => setOwner(e.target.value)}>
                 {userList.map((name) => (
-                  <MenuItem
-                    key={name.id}
-                    value={name.id}>
+                  <MenuItem key={name.id} value={name.id}>
                     {name.firstName} {name.lastName}
                   </MenuItem>
                 ))}

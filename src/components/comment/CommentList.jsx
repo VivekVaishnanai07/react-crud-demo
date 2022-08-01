@@ -64,7 +64,9 @@ function CommentList() {
   // To get post name from post list
   const getPostName = (postId) => {
     let post = postList.find(element => element.id === postId)
-    return post.text
+    if (post) {
+      return post.text
+    }
   }
   return (
     <>
