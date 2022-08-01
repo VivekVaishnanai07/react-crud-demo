@@ -1,0 +1,109 @@
+.home-content {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.web-nav-button {
+  color: white;
+  text-decoration: none;
+}
+
+.table-content {
+  margin-top: 6%;
+}
+
+.img-content {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.add-data-box {
+  margin-top: 35% !important;
+}
+
+.snackbar-add-data {
+  margin-top: 5%;
+}
+
+.table-container {
+  min-height: 50vh;
+}
+
+.user-post-inputbox {
+  margin-top: 17px !important;
+}
+
+.user-post-tagbox {
+  margin-top: 5px;
+}
+
+.chartView {
+  margin-top: 9%;
+}
+
+.progressbar {
+  margin-left: 50%;
+  margin-top: 5%;
+}
+
+.update-btn {
+  color: blue
+}
+
+.delete-btn {
+  color: red
+}
+
+.comment-btn {
+  color: green
+}
+
+.add-btns {
+  margin-bottom: 15px !important;
+}
+
+.comment-msg {
+  text-align: center;
+}
+
+.footer {
+  bottom: 0%;
+  position: inherit !important;
+}
+
+.footer-text {
+  justify-content: center;
+}
+
+#menubox {
+  top: 50px;
+  left: 35px;
+}
+
+#grid-btn {
+  left: 77%;
+}
+
+.gridpost {
+  margin-top: 95px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 23px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 20px;
+}
+
+.likeText {
+  font-size: 12px;
+}
+
+.postIcons {
+  gap: 6px;
+  margin-left: 8px;
+}
+
+.updateGridbtn{
+  color: black;
+}
