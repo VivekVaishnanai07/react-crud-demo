@@ -24,7 +24,6 @@ function DataAnalysis() {
   post.forEach((item) => {
     yData.push(item.likes)
   })
-
   const option = {
     xAxis: {
       type: 'category',
