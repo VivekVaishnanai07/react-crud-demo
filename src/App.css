@@ -1,8 +1,3 @@
-.home-content {
-  margin-top: 10%;
-  text-align: center;
-}
-
 .web-nav-button {
   color: white;
   text-decoration: none;
@@ -21,10 +16,6 @@
 
 .add-data-box {
   margin-top: 35% !important;
-}
-
-.snackbar-add-data {
-  margin-top: 5%;
 }
 
 .table-container {
@@ -77,17 +68,11 @@
   justify-content: center;
 }
 
-#menubox {
-  top: 50px;
-  left: 35px;
-}
-
-#grid-btn {
-  left: 77%;
+.grid-btn {
+  margin-left: 82%;
 }
 
 .gridpost {
-  margin-top: 95px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 23px;
@@ -107,4 +92,9 @@
 
 .updateGridbtn {
   color: black;
+}
+
+.grid-switch-btn {
+  margin-top: 7%;
+  margin-left: 80%;
 }

@@ -1,7 +1,8 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import AppsIcon from '@mui/icons-material/Apps';
 import EditIcon from '@mui/icons-material/Edit';
 import ForumIcon from '@mui/icons-material/Forum';
-import { Box, Button, CircularProgress, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Box, Button, CircularProgress, Container, Switch, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Paper from '@mui/material/Paper';
 import axios from "axios";
 import moment from 'moment';
@@ -19,6 +20,7 @@ function PostList() {
   const [open, setOpen] = useState(false);
   const [openComment, setOpenComment] = useState(false);
   const [commentList, setCommentList] = useState([])
+  const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
   //get Userlist Call Api
   useEffect(() => {
@@ -71,8 +73,10 @@ function PostList() {
   return (
     <>
       <Container className="table-content">
-        <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post</Link></Button>
-        <Button className="add-btns" id="grid-btn" variant="contained"><Link className="web-nav-button" to="/post-grid">Grid View</Link></Button>
+        <div>
+          <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post</Link></Button>
+          <Link to="/post-grid"><Switch {...label} className="grid-btn"></Switch></Link><AppsIcon />
+        </div>
         <TableContainer className="table-container" component={Paper}>
           <Table aria-label="simple table">
             <TableHead>

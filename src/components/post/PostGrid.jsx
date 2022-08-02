@@ -5,7 +5,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ForumIcon from '@mui/icons-material/Forum';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import TagSharpIcon from '@mui/icons-material/TagSharp';
-import { CircularProgress, Grid } from '@mui/material';
+import { CircularProgress, Grid, Switch } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -17,6 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
 import axios from 'axios';
+import AppsIcon from '@mui/icons-material/Apps';
 import moment from 'moment';
 import * as React from 'react';
 import { useEffect, useState } from "react";
@@ -34,6 +35,7 @@ export default function PostGrid() {
   const [selectedPostId, setSelectedPostId] = useState("")
   const [openComment, setOpenComment] = useState(false);
   const [commentList, setCommentList] = useState([])
+  const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
   //get Userlist Call Api
   useEffect(() => {
@@ -85,52 +87,53 @@ export default function PostGrid() {
   };
   return (
     <>
-      <Grid>
-        <Grid className='gridpost'>
-          {postList.map((item) => (
-            <Card key={item.id}>
-              <CardHeader avatar={
-                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  {item.owner.firstName.charAt(0).toUpperCase()}{item.owner.lastName.charAt(0).toUpperCase()}
-                </Avatar>}
-                action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
-                title={`${item.owner.firstName} ${item.owner.lastName}`}
-                subheader={moment(item.publishDate).format('DD  MMMM, YYYY')} />
-              <CardMedia
-                component="img"
-                height="194"
-                image="https://picsum.photos/id/237/200/300"
-                alt="img"
-              />
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                      <FavoriteIcon />
-                      <b className='likeText'>{item.likes} likes</b>
-                    </IconButton>
-                    <IconButton aria-label="add to favorites">
-                      <TagSharpIcon />
-                      <b className='likeText'>{item.tags}</b>
-                    </IconButton>
-                    <IconButton aria-label="add to favorites">
-                      <AlternateEmailRoundedIcon />
-                      <b className='likeText'>{item.text}</b>
-                    </IconButton>
-                  </CardActions>
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing className='postIcons'>
-                <ForumIcon onClick={() => handleCommentOpen(item.id)} />
-                <Link className="updateGridbtn" to={`/edit-post/${item.id}`}><EditIcon /></Link>
-                <DeleteForeverIcon onClick={() => handleClickOpen(item.id)} />
-              </CardActions>
-            </Card>
-          ))}
-          {postList.length === 0 && <Box className="progressbar">
-            <CircularProgress />
-          </Box>}
-        </Grid>
+      <div className='grid-switch-btn'>
+        <Link to="/post-list"><Switch {...label} defaultChecked ></Switch></Link><AppsIcon />
+      </div>
+      <Grid className='gridpost'>
+        {postList.map((item) => (
+          <Card key={item.id}>
+            <CardHeader avatar={
+              <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                {item.owner.firstName.charAt(0).toUpperCase()}{item.owner.lastName.charAt(0).toUpperCase()}
+              </Avatar>}
+              action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
+              title={`${item.owner.firstName} ${item.owner.lastName}`}
+              subheader={moment(item.publishDate).format('DD  MMMM, YYYY')} />
+            <CardMedia
+              component="img"
+              height="194"
+              image="https://picsum.photos/id/237/200/300"
+              alt="img"
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                <CardActions disableSpacing>
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                    <b className='likeText'>{item.likes} likes</b>
+                  </IconButton>
+                  <IconButton aria-label="add to favorites">
+                    <TagSharpIcon />
+                    <b className='likeText'>{item.tags}</b>
+                  </IconButton>
+                  <IconButton aria-label="add to favorites">
+                    <AlternateEmailRoundedIcon />
+                    <b className='likeText'>{item.text}</b>
+                  </IconButton>
+                </CardActions>
+              </Typography>
+            </CardContent>
+            <CardActions disableSpacing className='postIcons'>
+              <ForumIcon onClick={() => handleCommentOpen(item.id)} />
+              <Link className="updateGridbtn" to={`/edit-post/${item.id}`}><EditIcon /></Link>
+              <DeleteForeverIcon onClick={() => handleClickOpen(item.id)} />
+            </CardActions>
+          </Card>
+        ))}
+        {postList.length === 0 && <Box className="progressbar">
+          <CircularProgress />
+        </Box>}
       </Grid>
       <DeleteDialog open={open} confirmDialog={deleteUser} closeDialog={handleClose} title="Are you sure you want to delete this post?" />
       <CommentDialog openComment={openComment} closeDialog={handleClose} commentList={commentList} />
