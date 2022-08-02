@@ -15,6 +15,7 @@ import CommentList from './components/comment/CommentList';
 import AddComment from './components/comment/AddComment';
 import Footer from './components/footer/Footer';
 import PostGrid from './components/post/PostGrid';
+import PostDetails from './components/post/PostDetails';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <PrivateRoute path='/edit-user/:userId' component={UserOperation} exact />
           <PrivateRoute path='/post-list' component={PostList} exact />
           <PrivateRoute path='/post-grid' component={PostGrid} exact />
+          <PrivateRoute path='/post-details/:postId' component={PostDetails} exact />
           <PrivateRoute path='/add-post' component={PostOperation} exact />
           <PrivateRoute path='/edit-post/:postId' component={PostOperation} exact />
           <PrivateRoute path='/data-analysis' component={DataAnalysis} exact />

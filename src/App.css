@@ -84,6 +84,7 @@
 
 .likeText {
   font-size: 12px;
+  color: black;
 }
 
 .postIcons {
@@ -121,12 +122,20 @@
   text-align: -webkit-right;
 }
 
-#app-icon-layout{
+#app-icon-layout {
   margin-right: 32%;
 }
 
-.app-icon{
+.app-icon {
   float: right;
   font-size: 28px !important;
   margin-top: 4px;
+}
+
+.view-btn {
+  color: cornflowerblue;
+}
+
+.post-details-cards {
+  margin-top: 82px !important;
 }

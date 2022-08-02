@@ -11,6 +11,7 @@ import * as React from 'react';
 import { useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { toast } from 'react-toastify';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import CommentDialog from "../../util/CommentDialog";
 import { apiHeader, API_URL, notificationConfig } from "../../util/constant";
 import DeleteDialog from "../../util/DeleteDialog";
@@ -23,7 +24,7 @@ function PostList() {
   const [commentList, setCommentList] = useState([])
   const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-  //get Userlist Call Api
+  //get postList Call Api
   useEffect(() => {
     getPostList()
   }, [])
@@ -114,6 +115,7 @@ function PostList() {
                     <TableCell><b>{post.owner.firstName} {post.owner.lastName}</b></TableCell>
                     <TableCell>{moment(post.publishDate).format('DD  MMMM, YYYY')}</TableCell>
                     <TableCell>{moment(post.updatedDate).format('DD  MMMM, YYYY')}</TableCell>
+                    <TableCell><Link className="update-btn" to={`/post-details/${post.id}`}><VisibilityIcon className="view-btn"/></Link></TableCell>
                     <TableCell><ForumIcon className="comment-btn" onClick={() => handleCommentOpen(post.id)} /></TableCell>
                     <TableCell><DeleteForeverIcon className="delete-btn" onClick={() => handleClickOpen(post.id)} /></TableCell>
                     <TableCell><Link className="update-btn" to={`/edit-post/${post.id}`}><EditIcon /></Link></TableCell>
