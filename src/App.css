@@ -98,3 +98,34 @@
   margin-top: 7%;
   margin-left: 80%;
 }
+
+.post-list-switch {
+  font-size: xx-large;
+  float: right;
+}
+
+.grid-icon {
+  font-size: 27px !important;
+  float: right;
+}
+
+.grid-post-buttons {
+  margin-top: 6% !important;
+}
+
+#grid-add-post-btn {
+  margin-left: 100px;
+}
+
+.grid-add-post-btn {
+  margin-left: 100px !important;
+}
+
+#grid-app-icon {
+  margin-right: 19%;
+}
+
+.list-icon {
+  float: right;
+  font-size: 32px !important;
+}

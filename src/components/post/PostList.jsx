@@ -2,7 +2,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AppsIcon from '@mui/icons-material/Apps';
 import EditIcon from '@mui/icons-material/Edit';
 import ForumIcon from '@mui/icons-material/Forum';
-import { Box, Button, CircularProgress, Container, Switch, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import ListIcon from '@mui/icons-material/List';
+import { Box, Button, CircularProgress, Container, Grid, Switch, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Paper from '@mui/material/Paper';
 import axios from "axios";
 import moment from 'moment';
@@ -73,10 +74,15 @@ function PostList() {
   return (
     <>
       <Container className="table-content">
-        <div>
-          <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post</Link></Button>
-          <Link to="/post-grid"><Switch {...label} className="grid-btn"></Switch></Link><AppsIcon />
-        </div>
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post</Link></Button>
+          </Grid>
+          <Grid item xs={8}>
+            <AppsIcon className='grid-icon' /><Link to="/post-grid" className='post-list-btn'><Switch {...label} className="post-list-switch" /></Link>
+            <ListIcon className='list-icon' />
+          </Grid>
+        </Grid>
         <TableContainer className="table-container" component={Paper}>
           <Table aria-label="simple table">
             <TableHead>

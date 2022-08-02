@@ -5,7 +5,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ForumIcon from '@mui/icons-material/Forum';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import TagSharpIcon from '@mui/icons-material/TagSharp';
-import { CircularProgress, Grid, Switch } from '@mui/material';
+import { Button, CircularProgress, Grid, Switch } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -20,6 +20,7 @@ import axios from 'axios';
 import AppsIcon from '@mui/icons-material/Apps';
 import moment from 'moment';
 import * as React from 'react';
+import ListIcon from '@mui/icons-material/List';
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -87,9 +88,15 @@ export default function PostGrid() {
   };
   return (
     <>
-      <div className='grid-switch-btn'>
-        <Link to="/post-list"><Switch {...label} defaultChecked ></Switch></Link><AppsIcon />
-      </div>
+      <Grid container spacing={2} className="grid-post-buttons">
+        <Grid item xs={4}>
+          <Button className="add-btns" id="grid-add-post-btn" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post</Link></Button>
+        </Grid>
+        <Grid item xs={8}>
+          <AppsIcon className='grid-icon' id="grid-app-icon" /><Link to="/post-list" className='post-list-btn'><Switch {...label} defaultChecked className="post-list-switch" /></Link>
+          <ListIcon className='list-icon' />
+        </Grid>
+      </Grid>
       <Grid className='gridpost'>
         {postList.map((item) => (
           <Card key={item.id}>
