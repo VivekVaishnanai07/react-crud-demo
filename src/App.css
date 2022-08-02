@@ -96,12 +96,6 @@
 }
 
 .post-switch {
-  font-size: xx-large;
-  float: right;
-}
-
-.grid-app-icon {
-  font-size: 27px !important;
   float: right;
 }
 
@@ -117,11 +111,22 @@
   margin-left: 100px !important;
 }
 
-#grid-app-icon {
-  margin-right: 19%;
-}
-
 .list-icon {
   float: right;
-  font-size: 32px !important;
+  font-size: 33px !important;
+  margin-top: 2px;
+}
+
+.grid-header {
+  text-align: -webkit-right;
+}
+
+#app-icon-layout{
+  margin-right: 32%;
+}
+
+.app-icon{
+  float: right;
+  font-size: 28px !important;
+  margin-top: 4px;
 }

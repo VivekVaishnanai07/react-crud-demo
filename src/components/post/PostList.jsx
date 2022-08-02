@@ -74,15 +74,16 @@ function PostList() {
   return (
     <>
       <Container className="table-content">
-        <Grid container spacing={2}>
-          <Grid item xs={4}>
-            <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post</Link></Button>
-          </Grid>
-          <Grid item xs={8}>
-            <AppsIcon className='grid-app-icon' /><Link to="/post-grid" className='post-list-btn'><Switch {...label} className="post-switch" /></Link>
-            <ListIcon className='list-icon' />
-          </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post</Link></Button>
         </Grid>
+        <Grid item xs={8} className="grid-header">
+          <Grid item xs={4}><AppsIcon className='app-icon'/></Grid>
+          <Grid item xs={4}><Link to="/post-grid" className='post-list-btn'><Switch {...label} className="post-switch" /></Link></Grid>
+          <Grid item xs={4}><ListIcon className='list-icon' /></Grid>
+        </Grid>
+      </Grid>
         <TableContainer className="table-container" component={Paper}>
           <Table aria-label="simple table">
             <TableHead>
