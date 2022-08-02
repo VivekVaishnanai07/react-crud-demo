@@ -8,6 +8,8 @@
         "gridpost",
         "postuserlist",
         "privaterouter",
+        "progressbar",
+        "tagbox",
         "toastify"
     ]
 }

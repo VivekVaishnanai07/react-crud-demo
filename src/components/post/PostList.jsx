@@ -79,7 +79,7 @@ function PostList() {
             <Button className="add-btns" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post</Link></Button>
           </Grid>
           <Grid item xs={8}>
-            <AppsIcon className='grid-icon' /><Link to="/post-grid" className='post-list-btn'><Switch {...label} className="post-list-switch" /></Link>
+            <AppsIcon className='grid-app-icon' /><Link to="/post-grid" className='post-list-btn'><Switch {...label} className="post-switch" /></Link>
             <ListIcon className='list-icon' />
           </Grid>
         </Grid>

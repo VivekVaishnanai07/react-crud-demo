@@ -88,12 +88,12 @@ export default function PostGrid() {
   };
   return (
     <>
-      <Grid container spacing={2} className="grid-post-buttons">
+      <Grid container spacing={2} className="post-grid-header2">
         <Grid item xs={4}>
           <Button className="add-btns" id="grid-add-post-btn" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post</Link></Button>
         </Grid>
         <Grid item xs={8}>
-          <AppsIcon className='grid-icon' id="grid-app-icon" /><Link to="/post-list" className='post-list-btn'><Switch {...label} defaultChecked className="post-list-switch" /></Link>
+          <AppsIcon className='grid-app-icon' id="grid-app-icon" /><Link to="/post-list" className='post-list-btn'><Switch {...label} defaultChecked className="post-switch" /></Link>
           <ListIcon className='list-icon' />
         </Grid>
       </Grid>
@@ -133,7 +133,7 @@ export default function PostGrid() {
             </CardContent>
             <CardActions disableSpacing className='postIcons'>
               <ForumIcon onClick={() => handleCommentOpen(item.id)} />
-              <Link className="updateGridbtn" to={`/edit-post/${item.id}`}><EditIcon /></Link>
+              <Link className="grid-edit-post" to={`/edit-post/${item.id}`}><EditIcon /></Link>
               <DeleteForeverIcon onClick={() => handleClickOpen(item.id)} />
             </CardActions>
           </Card>

@@ -6,6 +6,7 @@
 .table-content {
   margin-top: 6%;
   margin-bottom: 80px;
+  padding: 0% !important;
 }
 
 .img-content {
@@ -90,26 +91,21 @@
   margin-left: 8px;
 }
 
-.updateGridbtn {
+.grid-edit-post {
   color: black;
 }
 
-.grid-switch-btn {
-  margin-top: 7%;
-  margin-left: 80%;
-}
-
-.post-list-switch {
+.post-switch {
   font-size: xx-large;
   float: right;
 }
 
-.grid-icon {
+.grid-app-icon {
   font-size: 27px !important;
   float: right;
 }
 
-.grid-post-buttons {
+.post-grid-header2 {
   margin-top: 6% !important;
 }
 
