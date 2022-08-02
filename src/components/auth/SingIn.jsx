@@ -3,20 +3,33 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import { Container } from '@mui/system';
+import axios from 'axios';
 import * as React from 'react';
 import { withRouter } from "react-router";
 import { toast } from 'react-toastify';
-import { notificationConfig } from '../../util/constant';
+import { apiHeader, API_URL, notificationConfig } from '../../util/constant';
 import { login } from '../privaterouter/utils/FunctionCalls';
 
 class SignIn extends React.Component {
   constructor() {
     super();
     this.state = {
-      username: "",
-      password: "",
+      firstName: "",
+      lastName: "",
       pin: "",
+      userList: []
     }
+  }
+  // Get user list
+  componentDidMount() {
+    axios.get(`${API_URL}/user`, {
+      headers: apiHeader
+    }).then(response => {
+      this.setState({ userList: response.data.data })
+    }).catch(error => {
+      toast.error("Ops your api is not working", notificationConfig)
+      console.error(error)
+    })
   }
   render() {
     const theme = createTheme()
@@ -29,16 +42,25 @@ class SignIn extends React.Component {
         [name]: value
       })
     }
+    //pin continent
+    let currentDate = new Date();
+    let totalMinutes = currentDate.getHours() * 60
+
     //Submit data
     const onSingIn = (e) => {
       e.preventDefault();
-      if (this.state.username === "aaa" && this.state.password === "aaa" && this.state.pin === "aaa") {
-        toast.success("Sign in successfully.", notificationConfig)
-        localStorage.setItem("isLogin", 'true')
-        this.props.history.push("/user-list");
+      if (this.state.pin == totalMinutes) {
+        let findData = this.state.userList.find(element => element.firstName === this.state.firstName && element.lastName === this.state.lastName)
+        if (findData) {
+          toast.success("Sign in successfully.", notificationConfig)
+          localStorage.setItem("isLogin", 'true')
+          this.props.history.push("/user-list");
+          login();
+        }else{
+          toast.error("Invalid firstName or lastName", notificationConfig)
+        }
       } else {
-        toast.error("Invalid username or password", notificationConfig)
-        login();
+        toast.error("Invalid pin", notificationConfig)
       }
     }
     return (
@@ -51,9 +73,9 @@ class SignIn extends React.Component {
                 margin="normal"
                 required
                 fullWidth
-                value={this.state.username}
-                name="username"
-                label="User Name"
+                value={this.state.firstName}
+                name="firstName"
+                label="FirstName"
                 type="text"
                 onChange={(e) => handleChangeForTextField(e)}
                 autoFocus
@@ -62,9 +84,9 @@ class SignIn extends React.Component {
                 margin="normal"
                 required
                 fullWidth
-                value={this.state.password}
-                name="password"
-                label="Password"
+                value={this.state.lastName}
+                name="lastName"
+                label="LastName"
                 type="text"
                 onChange={(e) => handleChangeForTextField(e)}
               />
@@ -75,7 +97,7 @@ class SignIn extends React.Component {
                 value={this.state.pin}
                 name="pin"
                 label="pin."
-                type="text"
+                type="number"
                 onChange={(e) => handleChangeForTextField(e)}
               />
               <Button
