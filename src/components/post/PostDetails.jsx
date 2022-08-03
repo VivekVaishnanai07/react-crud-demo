@@ -2,12 +2,12 @@ import { Avatar, Chip, Divider, Grid, Paper, Stack } from '@mui/material';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import axios from "axios";
 import moment from 'moment';
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router';
 import { toast } from "react-toastify";
-import { apiHeader, API_URL, notificationConfig } from "../../util/constant";
+import { notificationConfig } from "../../util/constant";
+import api from "../interceptor/api";
 
 
 export default function PostDetails() {
@@ -22,9 +22,7 @@ export default function PostDetails() {
 
   //Get post list
   useEffect(() => {
-    axios.get(`${API_URL}/post/${params.postId}`, {
-      headers: apiHeader
-    })
+    api.get(`/post/${params.postId}`)
       .then(response => {
         setText(response.data.text)
         setLikes(response.data.likes)
@@ -40,14 +38,13 @@ export default function PostDetails() {
   }, [params.postId])
   // To get comment & post list
   useEffect(() => {
-    axios.get(`${API_URL}/post/${params.postId}/comment`, {
-      headers: apiHeader
-    }).then(response => {
-      setCommentList(response.data.data)
-    }).catch(error => {
-      toast.error("Ops your api is not working", notificationConfig)
-      console.error(error)
-    })
+    api.get(`/post/${params.postId}/comment`)
+      .then(response => {
+        setCommentList(response.data.data)
+      }).catch(error => {
+        toast.error("Ops your api is not working", notificationConfig)
+        console.error(error)
+      })
   }, [params.postId])
 
   return (

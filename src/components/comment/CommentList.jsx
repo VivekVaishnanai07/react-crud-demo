@@ -1,12 +1,12 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Box, Button, CircularProgress, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { apiHeader, API_URL, notificationConfig } from "../../util/constant";
+import { notificationConfig } from "../../util/constant";
 import DeleteDialog from "../../util/DeleteDialog";
+import api from "../interceptor/api";
 
 function CommentList() {
   const [userId, setUserId] = useState("")
@@ -20,19 +20,16 @@ function CommentList() {
     getPostList()
   }, [])
   const getCommentList = () => {
-    axios.get(`${API_URL}/comment`, {
-      headers: apiHeader
-    }).then(response => {
-      setCommentList(response.data.data)
-    }).catch(error => {
-      toast.error("Ops your api is not working", notificationConfig)
-      console.error(error)
-    })
+    api.get('/comment')
+      .then(response => {
+        setCommentList(response.data.data)
+      }).catch(error => {
+        toast.error("Ops your api is not working", notificationConfig)
+        console.error(error)
+      })
   }
   const getPostList = () => {
-    axios.get(`${API_URL}/post`, {
-      headers: apiHeader
-    })
+    api.get('/post')
       .then(response => {
         setPostList(response.data.data)
       })
@@ -43,16 +40,15 @@ function CommentList() {
   }
   // Delete model handlers
   const deleteUser = () => {
-    axios.delete(`${API_URL}/comment/${userId}`, {
-      headers: apiHeader
-    }).then(response => {
-      toast.success("Your data has been successfully deleted", notificationConfig)
-      handleClose()
-      getCommentList()
-    }).catch(error => {
-      toast.error("Your data has been not delete", notificationConfig)
-      console.error(error)
-    })
+    api.delete(`/comment/${userId}`)
+      .then(response => {
+        toast.success("Your data has been successfully deleted", notificationConfig)
+        handleClose()
+        getCommentList()
+      }).catch(error => {
+        toast.error("Your data has been not delete", notificationConfig)
+        console.error(error)
+      })
   }
   const handleOpen = (Id) => {
     setOpen(true);

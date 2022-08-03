@@ -1,8 +1,10 @@
 import AlternateEmailRoundedIcon from '@mui/icons-material/AlternateEmailRounded';
+import AppsIcon from '@mui/icons-material/Apps';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ForumIcon from '@mui/icons-material/Forum';
+import ListIcon from '@mui/icons-material/List';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import TagSharpIcon from '@mui/icons-material/TagSharp';
 import { Button, CircularProgress, Grid, Switch } from '@mui/material';
@@ -16,17 +18,15 @@ import { red } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
-import axios from 'axios';
-import AppsIcon from '@mui/icons-material/Apps';
 import moment from 'moment';
 import * as React from 'react';
-import ListIcon from '@mui/icons-material/List';
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CommentDialog from '../../util/CommentDialog';
-import { apiHeader, API_URL, notificationConfig } from '../../util/constant';
+import { notificationConfig } from '../../util/constant';
 import DeleteDialog from '../../util/DeleteDialog';
+import api from "../interceptor/api";
 
 
 
@@ -44,42 +44,39 @@ export default function PostGrid() {
   }, [])
   //Get post list
   const getPostList = () => {
-    axios.get(`${API_URL}/post`, {
-      headers: apiHeader
-    }).then(response => {
-      setPostList(response.data.data)
-    }).catch(error => {
-      toast.error("Ops your api is not working", notificationConfig)
-      console.error(error)
-    })
+    api.get('/post')
+      .then(response => {
+        setPostList(response.data.data)
+      }).catch(error => {
+        toast.error("Ops your api is not working", notificationConfig)
+        console.error(error)
+      })
   }
   //Delete user data
   const deleteUser = () => {
-    axios.delete(`${API_URL}/post/${selectedPostId}`, {
-      headers: apiHeader
-    }).then(response => {
-      toast.success("Your data has been successfully deleted", notificationConfig)
-      handleClose()
-      getPostList()
-    }).catch(error => {
-      toast.error("Your data has been not delete", notificationConfig)
-      console.error(error)
-    })
+    api.delete(`/post/${selectedPostId}`)
+      .then(response => {
+        toast.success("Your data has been successfully deleted", notificationConfig)
+        handleClose()
+        getPostList()
+      }).catch(error => {
+        toast.error("Your data has been not delete", notificationConfig)
+        console.error(error)
+      })
   }
   const handleClickOpen = (Id) => {
     setOpen(true);
     setSelectedPostId(Id)
   };
   const handleCommentOpen = (postId) => {
-    axios.get(`${API_URL}/post/${postId}/comment`, {
-      headers: apiHeader
-    }).then(response => {
-      setOpenComment(true)
-      setCommentList(response.data.data)
-    }).catch(error => {
-      toast.error("Ops your api is not working", notificationConfig)
-      console.error(error)
-    })
+    api.get(`/post/${postId}/comment`)
+      .then(response => {
+        setOpenComment(true)
+        setCommentList(response.data.data)
+      }).catch(error => {
+        toast.error("Ops your api is not working", notificationConfig)
+        console.error(error)
+      })
 
   };
   const handleClose = () => {
@@ -93,7 +90,7 @@ export default function PostGrid() {
           <Button className="add-btns" id="grid-add-post-btn" variant="contained"><Link className="web-nav-button" to="/add-post">Add Post</Link></Button>
         </Grid>
         <Grid item xs={8} className="grid-header">
-          <Grid item xs={4}><AppsIcon className='app-icon' id="app-icon-layout"/></Grid>
+          <Grid item xs={4}><AppsIcon className='app-icon' id="app-icon-layout" /></Grid>
           <Grid item xs={4}><Link to="/post-list" className='post-list-btn'><Switch {...label} defaultChecked className="post-switch" /></Link></Grid>
           <Grid item xs={4}><ListIcon className='list-icon' /></Grid>
         </Grid>
@@ -105,7 +102,6 @@ export default function PostGrid() {
               <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
                 {item.owner.firstName.charAt(0).toUpperCase()}{item.owner.lastName.charAt(0).toUpperCase()}
               </Avatar>}
-              action={<IconButton aria-label="settings"><MoreVertIcon /></IconButton>}
               title={`${item.owner.firstName} ${item.owner.lastName}`}
               subheader={moment(item.publishDate).format('DD  MMMM, YYYY')} />
             <CardMedia

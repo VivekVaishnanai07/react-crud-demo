@@ -3,11 +3,11 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, withRouter } from "react-router";
 import { toast } from 'react-toastify';
-import { apiHeader, API_URL, notificationConfig } from "../../util/constant";
+import { notificationConfig } from "../../util/constant";
+import api from "../interceptor/api";
 
 // For tags static Option
 const stag = [
@@ -46,9 +46,7 @@ function PostOperation(props) {
 
   // For fetch user list 
   useEffect(() => {
-    axios.get(`${API_URL}/user`, {
-      headers: apiHeader
-    })
+    api.get('/user')
       .then(response => {
         setUserList(response.data.data)
       })
@@ -62,9 +60,7 @@ function PostOperation(props) {
     let findTagAry = []
     if (params.postId && userList.length > 0) {
       setUserId(params.postId)
-      axios.get(`${API_URL}/post/${params.postId}`, {
-        headers: apiHeader
-      })
+      api.get(`/post/${params.postId}`)
         .then(response => {
           response.data.tags.forEach((data) => {
             let findObj = stag.find(element => element.key === data)
@@ -97,10 +93,7 @@ function PostOperation(props) {
       'owner': owner,
     }
     if (userId) {
-      axios.put(`${API_URL}/post/${userId}`, data,
-        {
-          headers: apiHeader
-        })
+      api.put(`/post/${userId}`, data)
         .then(response =>
           toast.success("Your data has been successfully updated", notificationConfig),
           props.history.push("/post-list"))
@@ -109,10 +102,7 @@ function PostOperation(props) {
           toast.error(error.response.data.data.email, notificationConfig)
         })
     } else {
-      axios.post(`${API_URL}/post/create`, data,
-        {
-          headers: apiHeader
-        })
+      api.post(`/post/create`, data)
         .then(response => {
           toast.success("Your data has been successfully Added", notificationConfig)
           props.history.push("/post-list")

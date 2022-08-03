@@ -1,10 +1,10 @@
 import { Box, Button, Container, FormControl, InputLabel, MenuItem, TextField, Typography } from "@mui/material";
 import Select from '@mui/material/Select';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { apiHeader, API_URL, notificationConfig } from "../../util/constant";
+import { notificationConfig } from "../../util/constant";
+import api from "../interceptor/api";
 
 function AddComment(props) {
   const theme = createTheme()
@@ -16,9 +16,7 @@ function AddComment(props) {
 
   // get Owner in User Api
   useEffect(() => {
-    axios.get(`${API_URL}/user`, {
-      headers: apiHeader
-    })
+    api.get('/user')
       .then(response => {
         setUserList(response.data.data)
       })
@@ -29,9 +27,7 @@ function AddComment(props) {
   }, [])
   //get post id
   useEffect(() => {
-    axios.get(`${API_URL}/post`, {
-      headers: apiHeader
-    })
+    api.get('/post')
       .then(response => {
         setPostList(response.data.data)
       })
@@ -48,10 +44,7 @@ function AddComment(props) {
       'owner': owner,
       'post': postId
     }
-    axios.post(`${API_URL}/comment/create`, data,
-      {
-        headers: apiHeader
-      })
+    api.post('/comment/create', data)
       .then(response => {
         toast.success("Your data has been successfully Added", notificationConfig)
         props.history.push("/comment-list")

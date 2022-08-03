@@ -1,9 +1,9 @@
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios';
 import { Component } from "react";
 import { toast } from 'react-toastify';
-import { apiHeader, API_URL, notificationConfig } from "../../util/constant";
+import { notificationConfig } from "../../util/constant";
+import api from "../interceptor/api";
 
 class UserOperation extends Component {
   constructor(props) {
@@ -24,9 +24,7 @@ class UserOperation extends Component {
       isEmailDisable: this.props.match.params.userId ? true : false,
     }, () => {
       this.state.userId &&
-        axios.get(`${API_URL}/user/${this.state.userId}`, {
-          headers: apiHeader
-        })
+        api.get(`/user/${this.state.userId}`)
           .then(response => {
             this.setState({
               ...this.state,
@@ -54,10 +52,7 @@ class UserOperation extends Component {
       event.preventDefault();
 
       userId ?
-        axios.put(`${API_URL}/user/${userId}`, data,
-          {
-            headers: apiHeader
-          })
+        api.put(`/user/${userId}`, data)
           .then(response => console.error(response),
             toast.success("Your data has been successfully updated", notificationConfig),
             this.props.history.push("/user-list"))
@@ -66,10 +61,7 @@ class UserOperation extends Component {
           }) :
         // Add User Api Call
 
-        axios.post(`${API_URL}/user/create`, data,
-          {
-            headers: apiHeader
-          })
+        api.post('/user/create', data)
           .then(response => {
             toast.success("Your data has been successfully Added", notificationConfig)
             this.props.history.push("/user-list")

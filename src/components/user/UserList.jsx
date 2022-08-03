@@ -1,3 +1,6 @@
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
+import ForumIcon from '@mui/icons-material/Forum';
 import {
   Button,
   CircularProgress,
@@ -13,17 +16,14 @@ import {
   TableRow
 } from "@mui/material";
 import Paper from '@mui/material/Paper';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Box, Container } from "@mui/system";
-import axios from "axios";
-import ForumIcon from '@mui/icons-material/Forum';
+import moment from "moment";
 import { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { toast } from 'react-toastify';
-import { apiHeader, API_URL, notificationConfig } from "../../util/constant";
-import moment from "moment";
+import { notificationConfig } from "../../util/constant";
 import DeleteDialog from "../../util/DeleteDialog";
+import api from "../interceptor/api";
 
 class User extends Component {
   constructor() {
@@ -52,42 +52,39 @@ class User extends Component {
   };
   //Get user list 
   getUserList = () => {
-    axios.get(`${API_URL}/user`, {
-      headers: apiHeader
-    }).then(response => {
-      this.setState({ userList: response.data.data })
-    }).catch(error => {
-      toast.error("Ops your api is not working", notificationConfig)
-      console.error(error)
-    })
+    api.get('/user')
+      .then(response => {
+        this.setState({ userList: response.data.data })
+      }).catch(error => {
+        toast.error("Ops your api is not working", notificationConfig)
+        console.error(error)
+      })
   }
   //Get post list
   getPostList = (postId) => {
-    axios.get(`${API_URL}/user/${postId}/post`, {
-      headers: apiHeader
-    }).then(response => {
-      this.setState({
-        ...this.state,
-        openComment: true,
-        commentList: response.data.data
+    api.get(`/user/${postId}/post`)
+      .then(response => {
+        this.setState({
+          ...this.state,
+          openComment: true,
+          commentList: response.data.data
+        })
+      }).catch(error => {
+        toast.error("Ops your api is not working", notificationConfig)
+        console.error(error)
       })
-    }).catch(error => {
-      toast.error("Ops your api is not working", notificationConfig)
-      console.error(error)
-    })
   }
   //Delete User data 
   deleteUser() {
-    axios.delete(`${API_URL}/user/${this.state.userId}`, {
-      headers: apiHeader
-    }).then(response => {
-      toast.success("Your data has been successfully deleted", notificationConfig)
-      this.getUserList()
-      this.handleClose()
-    }).catch(error => {
-      toast.error("Your data has been not delete", notificationConfig)
-      console.error(error)
-    })
+    api.delete(`/user/${this.state.userId}`)
+      .then(response => {
+        toast.success("Your data has been successfully deleted", notificationConfig)
+        this.getUserList()
+        this.handleClose()
+      }).catch(error => {
+        toast.error("Your data has been not delete", notificationConfig)
+        console.error(error)
+      })
   }
   render() {
     const handleClickOpen = (Id) => {

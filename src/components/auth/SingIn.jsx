@@ -3,11 +3,11 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import { Container } from '@mui/system';
-import axios from 'axios';
 import * as React from 'react';
 import { withRouter } from "react-router";
 import { toast } from 'react-toastify';
-import { apiHeader, API_URL, notificationConfig } from '../../util/constant';
+import { notificationConfig } from '../../util/constant';
+import api from '../interceptor/api';
 import { login } from '../privaterouter/utils/FunctionCalls';
 
 class SignIn extends React.Component {
@@ -22,25 +22,33 @@ class SignIn extends React.Component {
   }
   // Get user list
   componentDidMount() {
-    axios.get(`${API_URL}/user`, {
-      headers: apiHeader
-    }).then(response => {
-      this.setState({ userList: response.data.data })
-    }).catch(error => {
-      toast.error("Ops your api is not working", notificationConfig)
-      console.error(error)
-    })
+    api.get('/user')
+      .then(response => {
+        this.setState({ userList: response.data.data })
+      }).catch(error => {
+        toast.error("Ops your api is not working", notificationConfig)
+        console.error(error)
+      })
   }
   render() {
+
     const theme = createTheme()
     //call OnChange event
     const handleChangeForTextField = (e) => {
       let name = e.target.name;
       let value = e.target.value;
-      this.setState({
-        ...this.state,
-        [name]: value
-      })
+      let textField = value.replace(/[^A-Za-z]/gi, "");
+      if (e.target.name !== "pin") {
+        this.setState({
+          ...this.state,
+          [name]: textField
+        })
+      } else {
+        this.setState({
+          ...this.state,
+          [name]: value
+        })
+      }
     }
     //pin continent
     let currentDate = new Date();
@@ -56,11 +64,11 @@ class SignIn extends React.Component {
           localStorage.setItem("isLogin", 'true')
           this.props.history.push("/user-list");
           login();
-        }else{
+        } else {
           toast.error("Invalid firstName or lastName", notificationConfig)
         }
       } else {
-        toast.error("Invalid pin", notificationConfig)
+        toast.error(" pleas enter valid pin", notificationConfig)
       }
     }
     return (
@@ -97,7 +105,7 @@ class SignIn extends React.Component {
                 value={this.state.pin}
                 name="pin"
                 label="pin."
-                type="number"
+                type="text"
                 onChange={(e) => handleChangeForTextField(e)}
               />
               <Button
